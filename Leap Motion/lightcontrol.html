@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <title>Dumper - Leap</title>
+    <script src="leap.js"></script>
+    <script src="jquery.js"></script>
+    <script>
+	var curRed = 0;
+	function colorToString(color) {
+		if (color > 255) color = 255;
+		if (color < 0) color = 0;
+		var strOut = Math.floor(color) + "";
+		
+		if (strOut.length == 0) {
+			strOut = "000";	
+		}
+		else if (strOut.length == 1) {
+			strOut = "00" + strOut;	
+		}
+		else if (strOut.length == 2) {
+			strOut = "0" + strOut;	
+		}
+		
+		return strOut;
+	}
+		
+	  var count = 0;
+      var controller = new Leap.Controller({enableGestures: true});
+      controller.loop(function(frame) {
+		count++;
+        latestFrame = frame;
+
+        for (var i in frame.handsMap) {
+			if (count % 3 == 0) {
+				var hand = frame.handsMap[i];
+				var intensity = hand.pitch() * 1.5;
+				
+				var redAmt = (hand.roll() + 1) / 2;
+				var greenAmt = 1 - (hand.roll() + 1) / 2;
+				
+				var red = 255 * (intensity * redAmt);
+				var green = 255 * (intensity * greenAmt);
+				var blue = 0;
+								
+				$.get("http://localhost/?color" + 
+				"&" + colorToString(red) + 
+				"&" + colorToString(green) + 
+				"&" + colorToString(blue) + 
+				"&" + colorToString(red) + 
+				"&" + colorToString(green) + 
+				"&" + colorToString(blue));
+			}
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <div id="out"></div>
+    <script>
+	
+		$.get("http://localhost/?color&255&025&025&255&025&025");
+	</script>
+  </body>
+</html>
