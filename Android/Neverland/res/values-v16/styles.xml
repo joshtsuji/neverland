@@ -10,9 +10,9 @@
     </style>
 
 	<style name="Widget.MyTabText" parent="android:Widget.Holo.Light.ActionBar.TabText.Inverse">
-
+ 		<item name="android:fontFamily">sans-serif-light</item>
 	    <item name="android:textColor">#fff</item>
-	    <item name="android:textSize">22px</item>
+	    <item name="android:textSize">23px</item>
 	</style>
 
 </resources>

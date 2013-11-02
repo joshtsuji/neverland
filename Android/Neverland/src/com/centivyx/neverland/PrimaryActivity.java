@@ -4,6 +4,8 @@ import java.util.Locale;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -11,9 +13,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
@@ -37,16 +39,21 @@ public class PrimaryActivity extends FragmentActivity implements ActionBar.TabLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
+        
         getWindow().getDecorView().setSystemUiVisibility(View.STATUS_BAR_HIDDEN);
         
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         
+       
         setContentView(R.layout.activity_primary);
+        
+        getActionBar().setBackgroundDrawable(new ColorDrawable(Color.argb(200, 0, 0, 0)));
 
         // Set up the action bar.
         final ActionBar actionBar = getActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS); 
         actionBar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
         actionBar.setDisplayShowHomeEnabled(false);
 
@@ -79,13 +86,6 @@ public class PrimaryActivity extends FragmentActivity implements ActionBar.TabLi
                             .setText(mSectionsPagerAdapter.getPageTitle(i))
                             .setTabListener(this));
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.primary, menu);
-        return true;
     }
     
     @Override

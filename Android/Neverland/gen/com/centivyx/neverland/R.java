@@ -21,7 +21,9 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int boston_map=0x7f020000;
+        public static final int boston_map_blur=0x7f020001;
+        public static final int ic_launcher=0x7f020002;
     }
     public static final class id {
         public static final int action_settings=0x7f080002;
@@ -62,12 +64,17 @@ public final class R {
         AppBaseTheme from BOTH res/values/styles.xml and
         res/values-v11/styles.xml on API 14+ devices.
     
- API 14 theme customizations can go here. 
+
+        Base application theme for API 14+. This theme completely replaces
+        AppBaseTheme from BOTH res/values/styles.xml and
+        res/values-v11/styles.xml on API 14+ devices.
+    
          */
         public static final int AppBaseTheme=0x7f060000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f060001;
+        public static final int Widget_MyTabText=0x7f060002;
     }
 }
